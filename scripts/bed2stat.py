@@ -1,3 +1,4 @@
+# Count each StV and write result into the stats.tsv file
 # Usage: python3 bed2stat.py <input>.bed > <stat>.tsv
 from collections import Counter
 from re import sub, search

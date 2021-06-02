@@ -1,3 +1,4 @@
+# Fill cillumn 8 in the stv bed file. "Clever" random coloring
 # Usage: python3 bed2stat.py <input>.bed > <output>.bed
 from collections import Counter
 from random import choice, randint

@@ -7,6 +7,32 @@ Usage: ./stv monomers.bed
 Config: insert path to dir with program into stv.sh and scripts/mons2hors.py
 ___
 
+Version 8
+
+Changes:
+
+• Cut before (after for "-" strand) hybrids which begin (end for "-" strand) with mon 1 (e.g. S2C2H1L.1-2_1/3_4 --> S2C2H1L.1-2; S2C2H1L.1/3_4)
+
+• Cut after (before for "-" strand) hybrids which end (begin for "-" strand) with max mon
+
+• Updates in monomeric track for cen2, cen11, cen18, cen21
+
+
+___
+
+Files:
+
+• t2t-chm13.v1.0-AS-SF-HORs-annotation-HMMs_280521.bed - monomeric track
+
+• cenAnnotation_live.bed - coordinates of live HOR domain derived from file t2t_cenAnnotation.v2.021921.bed 
+
+• stv8.bed - resulting file which can be put in the browser
+
+• stv_row.bed - same as stv8.bed but doesn't contain stv numbering, colors, the first description line
+
+• stats.tsv - contains the number of each stv in each chr
+___
+
 Method description:
 
 • The StV track was derived from the AS HOR annotation track (HOR-track; AS_HOR_Annot.bed) by using python scripts. The HOR-track shows the coordinates of every monomer in the assembly and its name which indicates to which HOR the monomer belongs and what is the number of this monomer in a HOR (defined as a standard master HOR with a fixed cyclic shift, see the HOR-track description and Uralsky 2019). So, each array is identified by a HOR name (e.g. S3CXH1L for the live array of the X chromosome) and each monomer by its number (e.g. S3CXH1L.1 for monomer #1 of the HOR). Hybrid monomers are indicated with a “/” (e.g. S2C8H1L.4/7, where the first part of the monomer is S2C8H1L.4 and the second is S2C8H1L.4/7).
@@ -24,4 +50,3 @@ Method description:
 • The StVs and full-length HORs in every centromere were numbered. A number is at the beginning of StV’s name after “#” sign. After a number there is “:” sign (e.g. #117:S3CXH1L.12-11_8-1). Numbering goes from p- to q-side of a chromosome regardless of the AS direction.  
 
 • The StV track was colored randomly but rare StVs (<10% in a centromere) are in bright colors to increase visibility and common StVs and full-length HORs are in dim colors.
-

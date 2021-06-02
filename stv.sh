@@ -1,4 +1,5 @@
 #!/bin/bash
+# Pipeline creates StV maps and StV stats table from monomeric bed file
 
 if [[ $# -ne 1 ]]
 then
@@ -32,4 +33,3 @@ sed -i "1 i\track name=\"StV\" description=\"Structural Variants\" itemRgb=\"On\
 
 rm stv_colored.bed
 rm stv_corrected.bed
-

@@ -1,10 +1,12 @@
+# Convert monomeric bed file into the HOR bed file
+# Usage: python3 mons2hors.py <mons>.bed > <hors>.bed
 from collections import Counter
 from random import choice, randint
 from re import search, sub
 from sys import argv
 
 
-# put here path to dir with program
+# path to dir with program
 path_to_dir = '/home/fedor/Programs/my/stv/'
 input_bed_path = argv[1]
 
@@ -271,6 +273,7 @@ for chr in chr_dict:
     n_prev = max_mon
     start = live_mons[0][1]
     end = live_mons[0][2]
+    is_prev_max = True
     for line in live_mons:
         strand = line[5]
         if line[3].split('.')[0] != live_mon_name: # non live mon
@@ -279,7 +282,8 @@ for chr in chr_dict:
         n = line[3].split('.')[1]
         mons_numbers.append(n)
         if strand == '+':
-            if n == max_mon:
+            # max mon (or max mon last in hybrid) THAN cut after it
+            if n == max_mon or n[-2:] == '/{}'.format(max_mon) or n[-3:] == '/{}'.format(max_mon):
                 end = line[2]
                 stv_name = stv_namer(live_mon_name, mons_numbers, strand)
                 stvs.append([chr, start, end, stv_name, '0', strand, start, end, '0,0,0'])
@@ -287,8 +291,10 @@ for chr in chr_dict:
                 stv_name = []
                 mons_numbers = []
                 n_prev = n
+                is_prev_max = True
                 continue
-            elif (n == '1' and n_prev != max_mon) or int(line[1])-int(end) > 800:
+            # first mon (or first mon is 1st in hybrid) AND previous wasn't max (or hybrid with max) OR big gap before THAN cut before it
+            elif ((n == '1' or n[:2] == '1/') and is_prev_max == False) or int(line[1])-int(end) > 800:
                 mons_numbers.pop()
                 stv_name = stv_namer(live_mon_name, mons_numbers, strand)
                 stvs.append([chr, start, end, stv_name, '0', strand, start, end, '0,0,0'])
@@ -297,8 +303,10 @@ for chr in chr_dict:
                 mons_numbers = [n]
             end = line[2]
             n_prev = n
+            is_prev_max = False
         else: # strand == '-'
-            if n == '1':
+            # first mon (or 1st is the last in hybrid) THAN cut after it
+            if n == '1' or n[-2:] == '/1':
                 end = line[2]
                 stv_name = stv_namer(live_mon_name, mons_numbers, strand)
                 stvs.append([chr, start, end, stv_name, '0', strand, start, end, '0,0,0'])
@@ -306,8 +314,21 @@ for chr in chr_dict:
                 stv_name = []
                 mons_numbers = []
                 n_prev = n
+                is_prev_max = True
                 continue
-            elif (n == max_mon and n_prev != '1') or int(line[1])-int(end) > 200:
+            # fix BUG with cen1 inversion 
+            elif chr == 'chr1' and n == max_mon and is_prev_max == False:
+                mons_numbers.pop()
+                stv_name = stv_namer(live_mon_name, mons_numbers, strand)
+                stvs.append([chr, start, end, stv_name, '0', strand, start, end, '0,0,0'])
+                start = line[1]
+                stv_name = []
+                if n == max_mon:
+                    mons_numbers = [max_mon]
+                else:
+                    mons_numbers = [n]
+            # max mon (or max is 1st in hybrid) AND previous wasn't the first
+            elif ((n == max_mon or n[:2] == '{}/'.format(max_mon) or n[-3:] == '{}/'.format(max_mon)) and is_prev_max == False and chr != 'chr1') or int(line[1])-int(end) > 200:
                 mons_numbers.pop()
                 stv_name = stv_namer(live_mon_name, mons_numbers, strand)
                 stvs.append([chr, start, end, stv_name, '0', strand, start, end, '0,0,0'])
@@ -319,6 +340,7 @@ for chr in chr_dict:
                     mons_numbers = [n]
             end = line[2]
             n_prev = n
+            is_prev_max = False
     if len(mons_numbers) > 0:
         stv_name = stv_namer(live_mon_name, mons_numbers, strand)
         stvs.append([chr, start, end, stv_name, '0', strand, start, end, '0,0,0'])
@@ -327,4 +349,3 @@ for chr in chr_dict:
     stv_bed += stvs_corrected
 
 print_bed(stv_bed)
-
