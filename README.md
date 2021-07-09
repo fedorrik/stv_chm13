@@ -7,26 +7,23 @@ Usage: ./stv monomers.bed
 Config: insert path to dir with program into stv.sh and scripts/mons2hors.py
 ___
 
-Version 8
+Version 9
 
 Changes:
 
-• Cut before (after for "-" strand) hybrids which begin (end for "-" strand) with mon 1 (e.g. S2C2H1L.1-2_1/3_4 --> S2C2H1L.1-2; S2C2H1L.1/3_4)
+• Updates in monomeric track for cenX
 
-• Cut after (before for "-" strand) hybrids which end (begin for "-" strand) with max mon
-
-• Updates in monomeric track for cen2, cen11, cen18, cen21
-
+• Manually fixed artefact in chrX:60,593,113-60,599,527
 
 ___
 
 Files:
 
-• t2t-chm13.v1.0-AS-SF-HORs-annotation-HMMs_280521.bed - monomeric track
+• t2t-chm13.release_v1.0-AS-HORs-annotation.290621 - monomeric track
 
 • cenAnnotation_live.bed - coordinates of live HOR domain derived from file t2t_cenAnnotation.v2.021921.bed 
 
-• stv8.bed - resulting file which can be put in the browser
+• stv9.bed - resulting file which can be put in the browser
 
 • stv_row.bed - same as stv8.bed but doesn't contain stv numbering, colors, the first description line
 
