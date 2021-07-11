@@ -7,11 +7,11 @@ Usage: ./stv monomers.bed
 Config: insert path to dir with program into stv.sh and scripts/mons2hors.py
 ___
 
-Version 9
+Version 10
 
 Changes:
 
-• Updates in monomeric track for cenX
+• New t2t_cenAnnotation
 
 • Manually fixed artefact in chrX:60,593,113-60,599,527
 
@@ -21,7 +21,12 @@ Files:
 
 • t2t-chm13.release_v1.0-AS-HORs-annotation.290621 - monomeric track
 
-• cenAnnotation_live.bed - coordinates of live HOR domain derived from file t2t_cenAnnotation.v2.021921.bed 
+• t2t_cenAnnotation.v3.070721.bed - annotation
+
+• cenAnnotation_live.bed - coordinates of live HOR domain derived from file t2t_cenAnnotation.v3.070721.bed 
+```shell 
+grep 'L)' t2t_cenAnnotation.v3.070721.bed > cenAnnotation_live.bed
+```
 
 • stv9.bed - resulting file which can be put in the browser
 

@@ -349,3 +349,4 @@ for chr in chr_dict:
     stv_bed += stvs_corrected
 
 print_bed(stv_bed)
+
