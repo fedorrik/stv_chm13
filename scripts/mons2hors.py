@@ -210,7 +210,8 @@ def print_bed(bed):
 input_bed = []
 with open(input_bed_path) as bed:
     for line in bed:
-        input_bed.append(line.split())
+        if line[:5] != 'track': # skip header
+            input_bed.append(line.split())
 
 # dict chrN: [[mon_names], [strands]]
 chr_dict = {}
@@ -244,6 +245,7 @@ with open('{}cenAnnotation_live.bed'.format(path_to_dir)) as f:
 #del chr_dict['chr1']
 stv_bed = []
 for chr in chr_dict:
+    #print(chr)
     live_mon_name = chr_dict[chr][0]
     # BUG cen21 live nome is not the most common now
     if chr == 'chr21':
@@ -258,7 +260,7 @@ for chr in chr_dict:
         for live_region in live_mons_coords[chr]:
             if line_chr == chr and start >= int(live_region[0]) and end <= int(live_region[1]):
                 live_mons.append(line)
-
+    #print(live_mons_coords[chr])
     # get max mon
     only_live_mons = []
     for line in live_mons:
@@ -275,6 +277,7 @@ for chr in chr_dict:
     end = live_mons[0][2]
     is_prev_max = True
     for line in live_mons:
+        #print(line)
         strand = line[5]
         if line[3].split('.')[0] != live_mon_name: # non live mon
             mons_numbers.append(line[3])
