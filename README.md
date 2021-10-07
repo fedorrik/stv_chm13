@@ -7,7 +7,7 @@ Usage: ./stv monomers.bed
 Config: insert path to dir with program into stv.sh and scripts/mons2hors.py
 ___
 
-Version 10
+Version 11
 
 Changes:
 
