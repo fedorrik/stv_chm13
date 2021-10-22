@@ -7,11 +7,11 @@ Usage: ./stv monomers.bed
 Config: insert path to dir with program into stv.sh and scripts/mons2hors.py
 ___
 
-Version 12
+Version 13
 
 Changes:
 
-• New AS-SF annotation
+• Corrections in the cenAnnotation
 
 ___
 
@@ -19,7 +19,7 @@ Files:
 
 • t2t-chm13.v1.1-AS-SF-HORs-annotation.170921.bed - monomeric track
 
-• t2t_cenAnnotation.v3.061021.CHM13v1.1.bed - annotation
+• t2t_cexnAnnotation.v3.221021.Ivans8.CHM13v1.1.remisct.sorted.Ivans_colors_final.bed - annotation
 
 • cenAnnotation_live.bed - coordinates of live HOR domain derived from file t2t_cenAnnotation.v3.070721.bed 
 ```shell 
