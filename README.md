@@ -2,16 +2,9 @@
 
 HOR Structrual Variant (StV) prediction using CHM13 hor-monomer annotation
 
-Usage: ./stv monomers.bed
+Usage: ./stv.sh monomers.bed
 
 Config: insert path to dir with program into stv.sh and scripts/mons2hors.py
-___
-
-Version 13
-
-Changes:
-
-• Corrections in the cenAnnotation
 
 ___
 
@@ -23,17 +16,17 @@ Files:
 
 • cenAnnotation_live.bed - coordinates of live HOR domain derived from file t2t_cenAnnotation.v3.070721.bed 
 ```shell 
-grep 'L)' t2t_cenAnnotation.v3.061021.CHM13v1.1.bed | awk '{if ($3-$2>30000 && $3-$2!=36169) {print $0} }' > cenAnnotation_live.bed
+grep 'L)'  t2t_cexnAnnotation.v3.221021.Ivans8.CHM13v1.1.remisct.sorted.Ivans_colors_final.bed | awk '{if ($3-$2>30000 && $3-$2!=36169) {print $0} }' > cenAnnotation_live.bed
 ```
 
-• stv12.bed - resulting file which can be put in the browser
+• stv.bed - resulting file which can be put in the browser
 
 • stv_row.bed - same as stv12.bed but doesn't contain stv numbering, colors, the first description line
 
 • stats.tsv - contains the number of each stv in each chr
 ___
 
-Metfod description (from Supplementary Material of https://www.biorxiv.org/content/10.1101/2021.07.12.452052v1):
+Method description (from Supplementary Material of https://www.biorxiv.org/content/10.1101/2021.07.12.452052v1):
 
 HOR Structrual Variant (StV) prediction using CHM13 hor-monomer annotation 
 
