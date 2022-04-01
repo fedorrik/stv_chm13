@@ -1,5 +1,6 @@
 # Convert monomeric bed file into the HOR bed file
 # Usage: python3 mons2hors.py <mons>.bed > <hors>.bed
+# Author: Fedor Ryabov 
 from collections import Counter
 from random import choice, randint
 from re import search, sub

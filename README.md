@@ -1,11 +1,12 @@
 # StV
 
-HOR Structrual Variant (StV) prediction using CHM13 hor-monomer annotation
+HOR Structrual Variant (StV) prediction using CHM13 HOR-monomer annotation
 
 Usage: ./stv.sh monomers.bed
 
 Config: insert path to dir with program into stv.sh and scripts/mons2hors.py
 
+This is special version for CHM13 genome for [this](https://www.science.org/doi/10.1126/science.abl4178) paper, universal version is [here](https://github.com/fedorrik/stv)
 ___
 
 Files:
@@ -21,14 +22,14 @@ grep 'L)'  t2t_cexnAnnotation.v3.221021.Ivans8.CHM13v1.1.remisct.sorted.Ivans_co
 
 • stv.bed - resulting file which can be put in the browser
 
-• stv_row.bed - same as stv12.bed but doesn't contain stv numbering, colors, the first description line
+• stv_row.bed - same as stv.bed but doesn't contain stv numbering, colors, the first description line
 
 • stats.tsv - contains the number of each stv in each chr
 ___
 
-Method description (from Supplementary Material of https://www.biorxiv.org/content/10.1101/2021.07.12.452052v1):
+Method description (from [Supplementary Material](https://www.science.org/doi/suppl/10.1126/science.abl4178/suppl_file/science.abl4178_sm.pdf) of [this](https://www.science.org/doi/10.1126/science.abl4178) paper):
 
-HOR Structrual Variant (StV) prediction using CHM13 hor-monomer annotation 
+HOR Structrual Variant (StV) prediction using CHM13 HOR-monomer annotation 
 
 The StV track was derived from the AS HOR annotation track (HOR-track; AS_HOR_Annot.bed) by using python scripts. The HOR-track shows the coordinates of every monomer in the assembly and its name which indicates to which HOR the monomer belongs and what is the number of this monomer in a HOR (defined as a standard master HOR with a fixed cyclic shift, see the HOR-track description and Uralsky 2019). So, each array is identified by a HOR name (e.g. S3CXH1L for the live array of the X chromosome) and each monomer by its number (e.g. S3CXH1L.1 for monomer #1 of the HOR). Hybrid monomers are indicated with a “/” (e.g. S2C8H1L.4/7, where the first part of the monomer is S2C8H1L.4 and the second is S2C8H1L.4/7).
 

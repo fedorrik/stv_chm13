@@ -1,5 +1,6 @@
 # Put numer in the name for StVs in each chr
 # Usage: python3 numbering.py <input>.bed > <output>.bed
+# Author: Fedor Ryabov 
 from sys import argv
 
 

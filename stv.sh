@@ -1,5 +1,7 @@
 #!/bin/bash
 # Pipeline creates StV maps and StV stats table from monomeric bed file
+# Author: Fedor Ryabov 
+
 
 if [[ $# -ne 1 ]]
 then

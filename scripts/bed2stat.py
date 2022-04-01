@@ -1,5 +1,6 @@
 # Count each StV and write result into the stats.tsv file
 # Usage: python3 bed2stat.py <input>.bed > <stat>.tsv
+# Author: Fedor Ryabov 
 from collections import Counter
 from re import sub, search
 from sys import argv
@@ -27,20 +28,20 @@ for line in input_bed:
     if strand == '-':
         name_splitted = name.split('.')
         name_digits = '.'.join(name_splitted[1:])
-        # Braindead line. Split name first by '_' and than by '-'. Than reverse both. So S1C12H1L.8-4_7-1 --> [['1', '7'], ['4', '8']]
+        # Split name first by '_' and than by '-'. Than reverse both. So S1C12H1L.8-4_7-1 --> [['1', '7'], ['4', '8']]
         items = list(reversed([list(reversed(i.split('-'))) for i in name_digits.split('_')]))
-        # shit with cen1 inversion
+        # cen1 inversion problems
         if chr == 'chr1':
             for i in range(len(items)):
                 for j in range(len(items[i])):
                     if 'X' in items[i][j]:
                         items[i][j] = '{}{}{}'.format(items[i][j].split('}')[1], items[i][j].split('}')[0], '}')
-        # And now join this shit back
+        # join it back
         reversed_name = '_'.join(['-'.join(i) for i in items])
         line[3] = '.'.join([name_splitted[0], reversed_name])
     line[3] = line[3].replace('(X)', '(_6/4_5)')
 
-input_bed.append(['chr24'] + input_bed[0][1:])  # idk wtf is with last chr. Let's add shit for chrX not to be the last chr. 
+input_bed.append(['chr24'] + input_bed[0][1:])  # crutch to make chrX not the last chr 
 current_chr = input_bed[0][0]
 current_bed = []
 start = input_bed[0][1]
